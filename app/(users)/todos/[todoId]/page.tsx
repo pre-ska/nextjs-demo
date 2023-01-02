@@ -1,7 +1,7 @@
 import { NOTFOUND } from 'dns';
 import React from 'react';
-import { Todo } from '../../../typings';
 import { notFound } from 'next/navigation';
+import { Todo } from '../../../../typings';
 
 type PageProps = {
   params: {
