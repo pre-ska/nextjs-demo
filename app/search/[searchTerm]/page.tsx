@@ -1,5 +1,4 @@
 import React from 'react';
-import { useRouter } from 'next/navigation';
 
 type PageProps = {
   params: {
@@ -19,17 +18,21 @@ type SearchResult = {
   ];
 };
 
-const search = async (searchTerm: string) => {
+const searchQuery = async (searchTerm: string) => {
   const res = await fetch(
-    `https://serpapi.com/search.json?q=${searchTerm}&api_keys=${process.env.API_KEY}`
+    `https://serpapi.com/search.json?q=${searchTerm}&api_key=${process.env.API_KEY}`
   );
 
+  // throw new Error('whoops');
+
   const data: SearchResult = await res.json();
+
   return data;
 };
 
 const SearchResults = async ({ params: { searchTerm } }: PageProps) => {
-  const searchResults = await search(searchTerm);
+  const searchResults = await searchQuery(searchTerm);
+
   return (
     <div>
       <p className="text-gray-500 text-sm">You searched for: {searchTerm}</p>
